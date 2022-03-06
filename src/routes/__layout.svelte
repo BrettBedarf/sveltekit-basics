@@ -15,6 +15,9 @@
 </div>
 
 <style lang="scss">
+	/* :global(header) {
+		background-color: blue;
+	} */
 	div {
 		footer {
 			background: #333;
