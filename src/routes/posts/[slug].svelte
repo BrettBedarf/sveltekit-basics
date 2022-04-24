@@ -2,6 +2,8 @@
 	import type { Load } from '@sveltejs/kit';
 	// primarilty used to load data before render
 	export const load: Load<{ slug: string }> = async ({ params }) => {
+		const Hello = (await import(`../../posts/${params.slug}.md`)).default;
+
 		const post = {
 			title: params.slug,
 			date: new Date(),
@@ -10,7 +12,8 @@
 
 		return {
 			props: {
-				post
+				post,
+				Hello
 			}
 		};
 	};
@@ -18,7 +21,8 @@
 
 <script>
 	// post is available because defined in loading function
-	export let post;
+	// export let post;
+	export let Hello;
 </script>
 
-<h3>{post.title}</h3>
+<Hello />
