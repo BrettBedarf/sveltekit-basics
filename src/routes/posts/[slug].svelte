@@ -2,20 +2,29 @@
 	import type { Load } from '@sveltejs/kit';
 	// primarilty used to load data before render
 	export const load: Load<{ slug: string }> = async ({ params }) => {
-		const Hello = (await import(`../../posts/${params.slug}.md`)).default;
+		try {
+			const Hello = (await import(`../../posts/${params.slug}.md`)).default;
 
-		const post = {
-			title: params.slug,
-			date: new Date(),
-			body: 'This is my first post!'
-		};
+			const post = {
+				title: params.slug,
+				date: new Date(),
+				body: 'This is my first post!'
+			};
 
-		return {
-			props: {
-				post,
-				Hello
-			}
-		};
+			return {
+				// data passed into svelte component
+				props: {
+					post,
+					Hello
+				}
+			};
+		} catch (error) {
+			console.log('e', error);
+			return {
+				status: 303,
+				redirect: '/posts'
+			};
+		}
 	};
 </script>
 
