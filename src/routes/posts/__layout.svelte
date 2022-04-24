@@ -11,8 +11,17 @@
 	<slot />
 	<aside>
 		<h5>Archive</h5>
-		<ul><a href="/posts">Home</a></ul>
-		<ul><a href="/posts/about">About</a></ul>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a sveltekit:prefetch href="/posts">Posts</a></li>
+			<li>
+				<a rel="external" href="https://kit.svelte.dev/docs/modules#$app-navigation-prefetch"
+					>SvelteKit Prefetch</a
+				>
+			</li>
+		</ul>
+		<ul />
 	</aside>
 </div>
 
