@@ -21,8 +21,8 @@
 		} catch (error) {
 			console.log('e', error);
 			return {
-				status: 303,
-				redirect: '/posts'
+				status: 404,
+				error: new Error(`Post not found: ${params.slug}`)
 			};
 		}
 	};
